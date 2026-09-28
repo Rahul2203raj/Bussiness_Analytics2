@@ -31,13 +31,7 @@ if submit:
       "hospital_admissions":hospital_admissions,"doctor_visits_per_year":doctor_visits_per_year,
       "medication_count":medication_count,"insurance_coverage_pct":insurance_coverage_pct
     }],columns=model.feature_names_in_)
-    
-prediction = float(model.predict(row)[0])
-
-# Prevent negative medical cost predictions
-prediction = max(0, prediction)
-
-st.metric(
-    "Estimated Annual Medical Cost",
-    f"₹{prediction:,.2f}"
-)
+    prediction=float(model.predict(row)[0])
+    # Medical costs cannot be negative; floor predictions at zero.
+    prediction=max(0.0, prediction)
+    st.metric("Estimated Annual Medical Cost",f"₹{prediction:,.2f}")
