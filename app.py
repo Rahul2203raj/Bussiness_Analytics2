@@ -8,7 +8,7 @@ st.caption("Estimate annual medical cost using a Linear Regression model. This i
 
 @st.cache_resource
 def load_model():
-    return joblib.load("medical_cost_model.sav")
+    return joblib.load("model.sav")
 
 model=load_model()
 with st.form("cost_form"):
